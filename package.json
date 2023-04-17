@@ -9,10 +9,13 @@
   "author": "Joy Matubber",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.30.1",
     "parcel": "^2.0.0-beta.1",
+    "regenerator-runtime": "^0.13.11",
     "sass": "^1.26.10"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.3"
+    "@parcel/transformer-sass": "^2.8.3",
+    "process": "^0.11.10"
   }
 }
