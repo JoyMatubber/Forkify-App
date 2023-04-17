@@ -558,7 +558,8 @@ function hmrAccept(bundle, id) {
 
 },{}],"aenu9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _esRegexpFlagsJs = require("core-js/modules/es.regexp.flags.js");
+var _esRegexpFlagsJs = require("core-js/modules/es.regexp.flags.js"); // window.addEventListener('hashchange',ShowRecipe);
+ // window.addEventListener('load',ShowRecipe);
 var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _iconsSvg = require("url:../img/icons.svg"); //parcel 2
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
@@ -587,10 +588,14 @@ const renderSpiner = function(parentEL) {
 const ShowRecipe = async function() {
     try {
         // 1) Loading Recipies
+        const id = window.location.hash.slice(1);
+        if (!id) return;
         renderSpiner(recipeContainer);
-        const res = await fetch("https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886");
+        const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
         const data = await res.json();
-        if (!res.ok) throw new Error(`${data.message} (${res.status}) `);
+        // if (!res.ok) {
+        // throw new Error(`${data.message} (${res.status}) `);
+        // }
         let { recipe  } = data.data;
         recipe = {
             id: recipe.id,
@@ -706,7 +711,11 @@ const ShowRecipe = async function() {
         alert(err);
     }
 };
-ShowRecipe();
+// ShowRecipe();
+[
+    "hashchange",
+    "load"
+].forEach((e)=>window.addEventListener(e, ShowRecipe));
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../img/icons.svg":"loVOp","core-js/modules/es.regexp.flags.js":"gSXXb","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
